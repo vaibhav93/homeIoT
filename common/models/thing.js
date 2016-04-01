@@ -6,6 +6,6 @@ module.exports = function(Thing) {
             app.client.publish('home', "1");
         } else if (!ctx.args.data.power)
             app.client.publish('home', "0");
-
+        next();
     });
 }
