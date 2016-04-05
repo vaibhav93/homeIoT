@@ -55,7 +55,7 @@ setInterval(function() {
             console.log(err);
         else {
             if (thing.power) {
-                console.log('Cooler was on. Switching off at ' + Date.now());
+                console.log('Cooler was on. Switching off at ' + moment(new Date()).format('DD-MM-YYYY HH:mm'));
                 thing.updateAttributes({
                     power: false
                 }, function(err, updatedThing) {
@@ -63,7 +63,7 @@ setInterval(function() {
                     console.log('Switched off')
                 })
             } else {
-                console.log('Cooler was off. Switching on at ' + Date.now());
+                console.log('Cooler was off. Switching on at ' + moment(new Date()).format('DD-MM-YYYY HH:mm'));
                 thing.updateAttributes({
                     power: true
                 }, function(err, updatedThing) {
