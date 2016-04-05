@@ -1,6 +1,6 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-
+var moment = require('moment');
 var app = module.exports = loopback();
 var mqtt = require('mqtt');
 app.start = function() {
@@ -57,7 +57,7 @@ setInterval(function() {
             if (thing.power) {
                 console.log('Cooler was on. Switching off at ' + Date.now());
                 thing.updateAttributes({
-                    power: true
+                    power: false
                 }, function(err, updatedThing) {
                     app.client.publish('home', "0");
                     console.log('Switched off')
@@ -65,7 +65,7 @@ setInterval(function() {
             } else {
                 console.log('Cooler was off. Switching on at ' + Date.now());
                 thing.updateAttributes({
-                    power: false
+                    power: true
                 }, function(err, updatedThing) {
                     app.client.publish('home', "1");
                     console.log('Switched on')

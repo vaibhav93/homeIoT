@@ -13,6 +13,7 @@
     "loopback-boot": "^2.6.5",
     "loopback-connector-mongodb": "^1.13.3",
     "loopback-datasource-juggler": "^2.19.0",
+    "moment": "^2.12.0",
     "mqtt": "^1.7.4",
     "serve-favicon": "^2.0.1"
   },
