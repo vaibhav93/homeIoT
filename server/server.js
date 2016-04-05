@@ -56,7 +56,7 @@ setInterval(function() {
         else {
             if (thing.power) {
                 console.log('Cooler was on. Switching off at ' + Date.now());
-                thing.updateAttribute({
+                thing.updateAttributes({
                     power: true
                 }, function(err, updatedThing) {
                     app.client.publish('home', "0");
@@ -64,7 +64,7 @@ setInterval(function() {
                 })
             } else {
                 console.log('Cooler was off. Switching on at ' + Date.now());
-                thing.updateAttribute({
+                thing.updateAttributes({
                     power: false
                 }, function(err, updatedThing) {
                     app.client.publish('home', "1");
