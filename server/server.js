@@ -1,8 +1,14 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var path = require('path');
 var moment = require('moment');
 var app = module.exports = loopback();
 var mqtt = require('mqtt');
+
+staticPath = path.resolve(__dirname, '../client/');
+
+
+app.use(loopback.static(staticPath));
 app.start = function() {
     // start the web server
     return app.listen(function() {
