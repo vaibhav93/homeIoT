@@ -10,7 +10,9 @@ https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.c
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.20/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.20/angular-animate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.20/angular-aria.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.20/angular-resource.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.js"></script>
+    <script src="js/services/lb-service.js"></script>
     <title>Angular demo</title>
 </head>
 
@@ -29,11 +31,11 @@ https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.c
                 <md-content flex id="content" class="custom-border">
                     <div ng-controller="page1Ctrl" style="padding:30px">
                         <div layout="row" layout-align="center">
-                            <md-switch ng-model="power" aria-label="Power" flex="none" class="switch-padding">
+                            <md-switch ng-model="thing.power" aria-label="Power" flex="none" class="switch-padding">
                                 Power
                             </md-switch>
                             <div flex="nogrow">
-                                <md-switch ng-model="timer.status" aria-label="Timer" class="switch-padding">
+                                <md-switch ng-model="timer.timer.status" aria-label="Timer" class="switch-padding">
                                     Timer
                                 </md-switch>
                             </div>
@@ -42,13 +44,13 @@ https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.c
                             <div flex="50">
                                 <md-input-container>
                                     <label>On time (in minutes)</label>
-                                    <input type="number" ng-model="timer.on" required ng-disabled="!timer.status">
+                                    <input type="number" ng-model="thing.timer.on" required ng-disabled="!thing.timer.status">
                                 </md-input-container>
                             </div>
                             <div flex="50">
                                 <md-input-container>
                                     <label>Off time (in minutes)</label>
-                                    <input type="number" ng-model="timer.off" required ng-disabled="!timer.status">
+                                    <input type="number" ng-model="thing.timer.off" required ng-disabled="!thing.timer.status">
                                 </md-input-container>
                             </div>
                         </div>
