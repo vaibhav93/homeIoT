@@ -45,16 +45,19 @@ module.exports = function(Thing) {
         if (ctx.args.data.power) {
             console.log(' Power changed to: 1');
             app.client.publish('home', "1");
+
+            if (ctx.args.data.timer.status) {
+                //switch ON
+                onInterval(ctx.args.data.mqtt_client_id, ctx.args.data.timer.on * 60 * 1000, ctx.args.data.timer.off * 60 * 1000);
+            } else if (!ctx.args.data.timer.status) {
+                clearAllIntervals();
+            }
+
         } else if (!ctx.args.data.power) {
             console.log(' Power changed to: 0');
             app.client.publish('home', "0");
         }
-        if (ctx.args.data.timer.status) {
-            //switch ON
-            onInterval(ctx.args.data.mqtt_client_id, ctx.args.data.timer.on * 60 * 1000, ctx.args.data.timer.off * 60 * 1000);
-        } else if (!ctx.args.data.timer.status) {
-            clearAllIntervals();
-        }
+
 
 
         next();
