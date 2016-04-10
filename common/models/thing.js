@@ -7,18 +7,18 @@ module.exports = function(Thing) {
     var onInterval = function(mqttID, onTime, offTime) {
         //on
         thingSetPower(mqttID, true);
-        var me = setTimeout(function(mqttID, offTime) {
+        var me = setTimeout(function(mqttID, offTime, onTime) {
             console.log('mqtt id :' + 'mqttID' + '\n' + 'off time :' + offTime);
-            offInterval(mqttID, offTime);
-        }, onTime, mqttID, offTime);
+            offInterval(mqttID, offTime, onTime);
+        }, onTime, mqttID, offTime, onTime);
     };
 
     var offInterval = function(mqttID, offTime, onTime) {
         //off
         thingSetPower(mqttID, false);
-        var me = setTimeout(function(mqttID, onTime) {
-            onInterval(mqttID, onTime);
-        }, offTime, mqttID, onTime)
+        var me = setTimeout(function(mqttID, onTime, offTime) {
+            onInterval(mqttID, onTime, offTime);
+        }, offTime, mqttID, onTime, offTime)
     };
     var thingSetPower = function(mqttID, power) {
         app.models.Thing.findOne({
