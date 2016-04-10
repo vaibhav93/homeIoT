@@ -51,35 +51,7 @@ client.on('message', function(topic, message, packet) {
         }
     })
 })
-// setInterval(function() {
-//     app.models.Thing.findOne({
-//         where: {
-//             mqtt_client_id: 'Cooler_1'
-//         }
-//     }, function(err, thing) {
-//         if (err || !thing)
-//             console.log(err);
-//         else {
-//             if (thing.power) {
-//                 console.log('Cooler was on. Switching off at ' + moment(new Date()).format('DD-MM-YYYY HH:mm'));
-//                 thing.updateAttributes({
-//                     power: false
-//                 }, function(err, updatedThing) {
-//                     app.client.publish('home', "0");
-//                     console.log('Switched off')
-//                 })
-//             } else {
-//                 console.log('Cooler was off. Switching on at ' + moment(new Date()).format('DD-MM-YYYY HH:mm'));
-//                 thing.updateAttributes({
-//                     power: true
-//                 }, function(err, updatedThing) {
-//                     app.client.publish('home', "1");
-//                     console.log('Switched on')
-//                 })
-//             }
-//         }
-//     })
-// }, 900000)
+
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname, function(err) {

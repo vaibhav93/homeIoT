@@ -2,7 +2,7 @@ var app = require('../../server/server');
 module.exports = function(Thing) {
     var clearAllIntervals = function() {
         for (var i = 1; i < 99999; i++)
-            window.clearInterval(i);
+            clearTimeout(i);
     }
     var onInterval = function(mqttID, onTime, offTime) {
         //on
@@ -55,6 +55,7 @@ module.exports = function(Thing) {
             }
 
         } else if (!ctx.args.data.power) {
+            clearAllIntervals();
             console.log(' Power changed to: 0');
             app.client.publish('home', "0");
         }
