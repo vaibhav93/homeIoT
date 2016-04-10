@@ -8,6 +8,7 @@ module.exports = function(Thing) {
         //on
         thingSetPower(mqttID, true);
         var me = setTimeout(function(mqttID, offTime) {
+            console.log('mqtt id :' + 'mqttID' + '\n' + 'off time :' + offTime);
             offInterval(mqttID, offTime);
         }, onTime, mqttID, offTime);
     };
