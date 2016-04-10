@@ -47,6 +47,7 @@ module.exports = function(Thing) {
             app.client.publish('home', "1");
 
             if (ctx.args.data.timer.status) {
+                clearAllIntervals();
                 //switch ON
                 onInterval(ctx.args.data.mqtt_client_id, ctx.args.data.timer.on * 60 * 1000, ctx.args.data.timer.off * 60 * 1000);
             } else if (!ctx.args.data.timer.status) {
