@@ -51,7 +51,7 @@ module.exports = function(Thing) {
         }
         if (ctx.args.data.timer.status) {
             //switch ON
-            onInterval(ctx.args.data.mqtt_client_id, ctx.args.data.timer.on, ctx.args.data.timer.off);
+            onInterval(ctx.args.data.mqtt_client_id, ctx.args.data.timer.on * 60 * 1000, ctx.args.data.timer.off * 60 * 1000);
         } else if (!ctx.args.data.timer.status) {
             clearAllIntervals();
         }
