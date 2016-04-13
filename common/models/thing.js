@@ -2,7 +2,7 @@ var app = require('../../server/server');
 module.exports = function(Thing) {
     var clearAllIntervals = function() {
         for (var i = 1; i < 99999; i++)
-            clearTimeout(i);
+            clearInterval(i);
     }
     var onInterval = function(mqttID, onTime, offTime) {
         //on
