@@ -6,6 +6,7 @@ module.exports = function(Thing) {
     }
     var onInterval = function(mqttID, onTime, offTime) {
         //on
+        console.log("Timer set for mqtt: " + mqttID);
         thingSetPower(mqttID, true);
         console.log("Setting on interval for ")
         var me = setTimeout(function(mqttID, offTime, onTime) {
