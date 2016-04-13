@@ -1,8 +1,11 @@
 var app = require('../../server/server');
 module.exports = function(Thing) {
+    var timeoutList = [];
     var clearAllIntervals = function() {
-        for (var i = 1; i < 99999; i++)
-            clearInterval(i);
+        timeoutList.forEach(function(timeout) {
+            clearTimeout(timeout);
+        })
+        timeoutList = [];
     }
     var onInterval = function(mqttID, onTime, offTime) {
         //on
@@ -10,9 +13,9 @@ module.exports = function(Thing) {
         thingSetPower(mqttID, true);
         console.log("Setting on interval for ")
         var me = setTimeout(function(mqttID, offTime, onTime) {
-            console.log('mqtt id :' + 'mqttID' + '\n' + 'off time :' + offTime);
             offInterval(mqttID, offTime, onTime);
         }, onTime, mqttID, offTime, onTime);
+        timeoutList.push(me);
         console.log("On timer value: " + me);
     };
 
@@ -22,6 +25,7 @@ module.exports = function(Thing) {
         var me = setTimeout(function(mqttID, onTime, offTime) {
             onInterval(mqttID, onTime, offTime);
         }, offTime, mqttID, onTime, offTime);
+        timeoutList.push(me);
         console.log("Off timer value: " + me);
     };
     var thingSetPower = function(mqttID, power) {
