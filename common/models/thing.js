@@ -7,10 +7,12 @@ module.exports = function(Thing) {
     var onInterval = function(mqttID, onTime, offTime) {
         //on
         thingSetPower(mqttID, true);
+        console.log("Setting on interval for ")
         var me = setTimeout(function(mqttID, offTime, onTime) {
             console.log('mqtt id :' + 'mqttID' + '\n' + 'off time :' + offTime);
             offInterval(mqttID, offTime, onTime);
         }, onTime, mqttID, offTime, onTime);
+        console.log("On timer value: " + me);
     };
 
     var offInterval = function(mqttID, offTime, onTime) {
@@ -18,7 +20,8 @@ module.exports = function(Thing) {
         thingSetPower(mqttID, false);
         var me = setTimeout(function(mqttID, onTime, offTime) {
             onInterval(mqttID, onTime, offTime);
-        }, offTime, mqttID, onTime, offTime)
+        }, offTime, mqttID, onTime, offTime);
+        console.log("Off timer value: " + me);
     };
     var thingSetPower = function(mqttID, power) {
         app.models.Thing.findOne({
@@ -47,6 +50,7 @@ module.exports = function(Thing) {
             app.client.publish('home', "1");
 
             if (ctx.args.data.timer.status) {
+                console.log("Timer set. On time " + ctx.args.data.timer.on + " minutes. Off time " + ctx.args.data.timer.on + " minutes.")
                 clearAllIntervals();
                 //switch ON
                 onInterval(ctx.args.data.mqtt_client_id, ctx.args.data.timer.on * 60 * 1000, ctx.args.data.timer.off * 60 * 1000);
@@ -59,8 +63,6 @@ module.exports = function(Thing) {
             console.log(' Power changed to: 0');
             app.client.publish('home', "0");
         }
-
-
 
         next();
     });
