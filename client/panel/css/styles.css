@@ -18,8 +18,13 @@ md-toolbar {
 .padding-top-10{
     padding-top: 10px !important;
 }
+@media (min-width:1280px){
+    .switch-padding{
+        padding: 0 90px !important;
+    } 
+}
 .switch-padding{
-    padding:0 90px;
+    padding:0 40px;
 }
 .custom-border{
     border-style: solid;

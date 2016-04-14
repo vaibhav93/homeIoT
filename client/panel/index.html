@@ -20,14 +20,14 @@ https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.c
 <body ng-app="test">
     <div layout="column">
         <div layout="row">
-            <div flex="40" flex-offset="30">
+            <div flex-gt-md="40" flex="100" flex-offset="0" flex-offset-gt-md="30">
                 <md-toolbar class="md-primary" layout="row">
                     <h1>Home</h1>
                 </md-toolbar>
             </div>
         </div>
         <div layout="row">
-            <div flex="40" flex-offset="30">
+            <div flex-gt-md="40" flex="100" flex-offset="0" flex-offset-gt-md="30">
                 <md-content flex id="content" class="custom-border">
                     <div ng-controller="page1Ctrl" style="padding:30px">
                         <div layout="row" layout-align="center">
@@ -40,7 +40,7 @@ https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.c
                                 </md-switch>
                             </div>
                         </div>
-                        <div layout="row">
+                        <div layout="row" layout-xs="column">
                             <div flex="50">
                                 <md-input-container>
                                     <label>On time (in minutes)</label>

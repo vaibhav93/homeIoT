@@ -54,12 +54,12 @@ module.exports = function(Thing) {
             console.log(' Power changed to: 1');
             app.client.publish('home', "1");
 
-            if (ctx.args.data.timer.status) {
+            if (ctx.args.data.timer && ctx.args.data.timer.status) {
                 console.log("Timer set. On time " + ctx.args.data.timer.on + " minutes. Off time " + ctx.args.data.timer.on + " minutes.")
                 clearAllIntervals();
                 //switch ON
                 onInterval(ctx.args.data.mqtt_client_id, ctx.args.data.timer.on * 60 * 1000, ctx.args.data.timer.off * 60 * 1000);
-            } else if (!ctx.args.data.timer.status) {
+            } else if (ctx.args.data.timer && !ctx.args.data.timer.status) {
                 clearAllIntervals();
             }
 
